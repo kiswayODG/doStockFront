@@ -5,7 +5,7 @@ export interface UserInterface {
 }
 
 export interface AuthenticationResponse {
-    token : string,
-    logged : boolean,
-    user : UserInterface,
+    message : string,
+    accessToken : string,
+    refreshToken : string,
 }

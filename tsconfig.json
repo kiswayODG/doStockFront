@@ -21,10 +21,10 @@
     "jsx": "react-jsx",
     "baseUrl": "src",
     "paths": {
-      "Components": ["components/*"],
-      "AppConfigs": ["appConfigs/*"],
-      "Modules" : ["modules/*"],
-      "Utilities": ["utilities/*"],
+      "@components": ["components/*"],
+      "@appConfigs": ["appConfigs/*"],
+      "@modules" : ["modules/*"],
+      "@utilities": ["utilities/*"],
     }
   },
   "include": [

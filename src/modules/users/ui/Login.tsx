@@ -59,15 +59,14 @@ export default function Login() {
       username : state.username,
       password : state.password,
     }
-    
+    navigate(Navigation.DASHBOARD);
     await apiClient.users.userLogin(user)
     .then((res)=>{
       let result = res.data as AuthenticationResponse;
      
       
-      if(result.logged == true){
-        setToken(result.token);
-        setUserConnected(result.user);
+      if(result.accessToken.length>0){
+        setToken(result.accessToken);
         navigate(Navigation.DASHBOARD);
       }else{
         setState((prevState)=>({

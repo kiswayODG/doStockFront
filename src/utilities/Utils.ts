@@ -1,5 +1,8 @@
 import { UserInterface } from "modules/users/model/UserInterface";
 import { Constante } from "./Constantes";
+import { Typography } from "@mui/material";
+
+
 
 export const removeDataFromLocalStorage=() =>{
     localStorage.clear();
@@ -16,4 +19,6 @@ export const setToken = (token : string) => {
 export const setUserConnected = (user : UserInterface) => {
     localStorage.setItem(Constante.USERLOGGED, JSON.stringify(user));
 }
+
+
 
