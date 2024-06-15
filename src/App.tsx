@@ -1,10 +1,8 @@
-
-import { routes } from './appConfigs/routes';
+import { routes } from '@appConfigs/routes';
 import { Routes, Route } from 'react-router';
-import './App.css';
 import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-
+import './App.css';
 
 
 function App() {

@@ -11,7 +11,7 @@ const TiersView = lazy(() => import("modules/tiers/ui/TiersView"));
 const CommandeReadView = lazy(() => import("modules/commandes/ui/CommandeReadView"));
 
 const Home = lazy(() => import("common/LandingPage/ui/Home"));
-const Login = lazy(() => import("modules/users/ui/Login"));
+const Login = lazy(() => import("@modules/users/ui/Login"));
 const SettingsApplicationsIcon = lazy(() => import("@mui/icons-material/SettingsApplications"));
 const ApartmentIcon = lazy(() => import("@mui/icons-material/Apartment"));
 

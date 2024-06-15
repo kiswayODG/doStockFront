@@ -36,19 +36,12 @@ const AddUpdateTiers: React.FC<viewPropsI> = ({ onClose, tiersModel }) => {
   });
   return (
     <>
-      <DialogContent>
+      <DialogContent className="">
         <Grid>
           <form
             className="flex flex-col justify-center "
             onSubmit={formik.handleSubmit}
           >
-            <Controls.TextFieldComponent
-              className=""
-              label="id"
-              size="small"
-              value={formik.values.id}
-              hidden={true}
-            />
 
             <Controls.TextFieldComponent
               label="Nom"

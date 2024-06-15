@@ -1,13 +1,13 @@
 import { GridColDef } from "@mui/x-data-grid";
-import TableComponent from "components/TableComponent";
-import Layout from "components/Layout";
-import { TiersInterface } from "modules/tiers/model/TiersInterface";
+import TableComponent from "@components/TableComponent";
+import Layout from "@components/Layout";
+import { TiersInterface } from "@modules/tiers/model/TiersInterface";
 import { useEffect, useState } from "react";
-import Controls from "components/control/controls";
+import Controls from "@components/control/controls";
 import { AddCircleOutlined } from "@mui/icons-material";
-import useModal from "components/hooks/useModal";
-import FormDialog from "components/modals/FormDialogComponent";
-import AddUpdateTiers from "modules/tiers/components/AddUpdateTiers";
+import useModal from "@components/hooks/useModal";
+import FormDialog from "@components/modals/FormDialogComponent";
+import AddUpdateTiers from "@modules/tiers/components/AddUpdateTiers";
 
 interface viewStateI {
   data: TiersInterface[];
@@ -72,6 +72,7 @@ const TiersView: React.FC = () => {
       field: "email",
       headerName: "Email",
     },
+    
   ];
 
   return (
