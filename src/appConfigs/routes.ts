@@ -9,6 +9,7 @@ const ShoppingCartIcon = lazy(() => import("@mui/icons-material/ShoppingCart"));
 const CategoryView = lazy(() => import("modules/parametrage/ui/CategoryView"));
 const TiersView = lazy(() => import("modules/tiers/ui/TiersView"));
 const CommandeReadView = lazy(() => import("modules/commandes/ui/CommandeReadView"));
+const MagasinView = lazy(() => import("@modules/parametrage/ui/MagasinView"));
 
 const Home = lazy(() => import("common/LandingPage/ui/Home"));
 const Login = lazy(() => import("@modules/users/ui/Login"));
@@ -53,7 +54,7 @@ export const routes: routeI[] = [
     {
         referenceModule: 1,
         path: Navigation.MAGASINS,
-        component: TiersView,
+        component: MagasinView,
     },
     {
         referenceModule: 3,
