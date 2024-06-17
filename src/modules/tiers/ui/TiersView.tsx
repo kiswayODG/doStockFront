@@ -8,6 +8,7 @@ import { AddCircleOutlined } from "@mui/icons-material";
 import useModal from "@components/hooks/useModal";
 import FormDialog from "@components/modals/FormDialogComponent";
 import AddUpdateTiers from "@modules/tiers/components/AddUpdateTiers";
+import { TableActions } from "@components/TableAction/TableActions";
 
 interface viewStateI {
   data: TiersInterface[];
@@ -71,6 +72,23 @@ const TiersView: React.FC = () => {
     {
       field: "email",
       headerName: "Email",
+    },
+    {
+      field: "actions",
+      headerName: "Action(s)",
+      type: "actions",
+      width: 200,
+      getActions: (params) => [
+        <TableActions.detailAction
+         onAction={()=>{}}
+         />,
+         <TableActions.updateAction
+         onAction={()=>{}}
+         />,
+         <TableActions.deleteAction
+         onAction={()=>{}}
+         />
+      ],
     },
     
   ];
