@@ -111,8 +111,8 @@ export const parametrages: module[] = [
     },
     {
         referenceModule: 2,
-        path: Navigation.UNDIFINED,
-        titre: "Param1",
+        path: Navigation.PARAMETRAGE_CATEGORY,
+        titre: "Categories",
         icon: SettingsApplicationsIcon
     },
     {

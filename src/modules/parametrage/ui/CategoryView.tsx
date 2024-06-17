@@ -47,7 +47,7 @@ const CategoryView : React.FC = ()=>{
           <Controls.OnActionButton
             type="button"
             onAction={handleAddUpdateTiers}
-            titre="Tiers"
+            titre="Catégorie"
             icon={<AddCircleOutlined />}
           />
         </>
@@ -88,7 +88,7 @@ const CategoryView : React.FC = ()=>{
     ];
 
     return (
-        <Layout viewTitle="Tiers (Client/Fournisseurs)">
+        <Layout viewTitle="Catégorie">
           <TableComponent
             columns={column}
             rows={[]}
