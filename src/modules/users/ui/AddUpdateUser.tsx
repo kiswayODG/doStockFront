@@ -10,6 +10,9 @@ import { UserInterface } from "../model/UserInterface";
 import Controls from "@components/control/controls";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { toast } from "react-toastify";
+import { apiClient } from "api/api";
+import { Navigate, useNavigate } from "react-router";
 
 interface viewPropsI {
   user?: UserInterface;
@@ -19,14 +22,29 @@ interface viewPropsI {
 interface viewState {}
 
 const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
+
+  const navigate = useNavigate();
+  
   const validateSchema = Yup.object().shape({
-    fullname: Yup.string().required("veuillez renseigner le nom et prénom !"),
+    fullname: Yup.string()
+    .required("Veuillez renseigner le nom et prénom !")
+    .test(
+      'nom-prenom',
+      'Veuillez fournir à la fois le nom et le prénom',
+      value => {
+        if (!value) return false;
+        const parts = value.trim().split(' ');
+        return parts.length >= 2;
+      }
+    ),
     username: Yup.string().required(
       "veuillez renseigner le nom d'utilisateur !"
     ),
     password: Yup.string().required("veuillez renseigner le mot de passe !"),
     locality: Yup.string().required("veuillez renseigner la localité !"),
-    telephone: Yup.string().required("veuillez renseigner le telephone !"),
+    telephone: Yup.string()
+    .required("Veuillez renseigner le téléphone !")
+    .matches(/^\d{8}$/, "Le numéro de téléphone doit contenir exactement 8 chiffres"),
   });
 
   const formik = useFormik({
@@ -53,6 +71,19 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
         locality: values.locality,
         telephone: values.telephone,
       }
+      toast.promise(
+        apiClient.users.createUser(userToregister).then(
+          (res)=>{
+            if(res.data!=null)
+              navigate("/login")
+          }
+        ),
+        {
+          pending: 'Demande en traitement',
+          success: 'Utilisateur créé avec succès !',
+          error: 'Une erreur lors du traitement !'
+        }
+    )
       
     },
   });
@@ -73,7 +104,7 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
             elevation={6}
             square
           >
-            <form onSubmit={formik.handleSubmit}>
+           
               <Box
                 sx={{
                   mt: 8,
@@ -181,12 +212,12 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
               <Box className="flex flex-row justify-end space-x-3 mr-40">
                 <Controls.CancelButton title="Annuler" path="/" />
                 <Controls.OnActionButton
-                  type="submit"
+                  type="button"
                   titre="Valider"
-                  // onAction={formik.handleSubmit}
+                   onAction={formik.handleSubmit}
                 />
               </Box>
-            </form>
+           
           </Grid>
           <Grid
             item

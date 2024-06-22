@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { LinearProgress } from '@mui/material';
 import { BrowserRouter } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,6 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
   <Suspense fallback={<LinearProgress />}>
+  <ToastContainer  autoClose={8000}/>
   <App />
   </Suspense>
   </BrowserRouter>
