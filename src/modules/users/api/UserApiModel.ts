@@ -5,11 +5,12 @@ import { UsersEndpoints } from "./UserEndPoint";
 import { HttpRequestParamsInterface } from "../../../appConfigs/httpClient/models/HttpRequestParamsInterface";
 import { HttpRequestType } from "appConfigs/httpClient/models/HttpRequestType";
 import { getHttpClient } from "appConfigs/httpClient/HttpClientIndex";
+import { Constante } from "@utilities/Constantes";
 
 export class UsersApiModel implements UsersApInterface {
     
     
-    public token = window.localStorage.getItem('accessToken')
+    public token = window.localStorage.getItem(Constante.TOKEN)
 
     userLogin(userCredentials: UserInterface): Promise<ApiResponseInterface<AuthenticationResponse>> {
         const requestParameters: HttpRequestParamsInterface = {

@@ -9,6 +9,8 @@ import { AddCircleOutlined } from "@mui/icons-material";
 import { GridColDef } from "@mui/x-data-grid";
 import { TableActions } from "@components/TableAction/TableActions";
 import AddUpdateMagasin from "../components/AddUpdateMagasin";
+import { apiClient } from "api/api";
+import { Box, CircularProgress } from "@mui/material";
 
 interface viewInterface {}
 
@@ -26,7 +28,17 @@ const MagasinView: React.FC = () => {
     currentRow: {} as MagasinInterface,
     loading: true,
   });
-  const fetchData = async () => {};
+
+  const fetchData = async () => {
+    apiClient.parametrage.fetchMagasins().then((res) => {
+      setState((prevState) => ({
+        ...prevState,
+        data: res.data as MagasinInterface[],
+        filteredData: res.data as MagasinInterface[],
+        loading: false,
+      }));
+    });
+  };
 
   useEffect(() => {
     fetchData();
@@ -83,11 +95,18 @@ const MagasinView: React.FC = () => {
   return (
     <>
       <Layout viewTitle="Magasins">
-        <TableComponent
-          columns={column}
-          rows={[]}
-          toolBarChildren={filterComponent()}
-        />
+        {state.loading ? (
+          <Box className="flex justify-center items-center h-screen">
+            {" "}
+            <CircularProgress />{" "}
+          </Box>
+        ) : (
+          <TableComponent
+            columns={column}
+            rows={state.filteredData}
+            toolBarChildren={filterComponent()}
+          />
+        )}
 
         <FormDialog onClose={addupdModal.toggle} isOpen={addupdModal.isOpen}>
           <AddUpdateMagasin

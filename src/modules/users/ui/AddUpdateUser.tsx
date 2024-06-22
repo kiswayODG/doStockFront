@@ -13,6 +13,7 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { apiClient } from "api/api";
 import { Navigate, useNavigate } from "react-router";
+import { Console } from "console";
 
 interface viewPropsI {
   user?: UserInterface;
@@ -72,8 +73,9 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
         telephone: values.telephone,
       }
      // toast.promise(
-         apiClient.users.createUser(userToregister).then(
+        await apiClient.users.createUser(userToregister).then(
           (res)=>{
+            console.log(res.data);
             if(res.data!=null)
               navigate("/login")
           }

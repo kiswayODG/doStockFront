@@ -10,6 +10,8 @@ import { useEffect, useState } from "react";
 import useModal from "@components/hooks/useModal";
 import { boolean } from "yup";
 import AddUpdateCategory from "../components/AddUpdateCategory";
+import { Box, CircularProgress } from "@mui/material";
+import { apiClient } from "api/api";
 
 interface viewInterface {
 
@@ -30,15 +32,40 @@ const CategoryView : React.FC = ()=>{
         currentRow : {} as CategoryInterface,
         loading : true,
     })
-    const fetchData = async () => {};
+    const fetchData = async () => {
+      await apiClient.parametrage.fetchCategories().then(
+        (res)=> {
+          setState((prevState)=>({
+            ...prevState,
+            data: res.data as CategoryInterface[],
+            filteredData: res.data as CategoryInterface[],
+            loading: false,
+          }))
+        }
+      )
+    };
 
     useEffect(() => {
       fetchData();
     });
   
     const addupdModal = useModal();
-    const handleAddUpdateTiers = () => {
+    const addDetailModal = useModal();
+    
+    const handleAddUpdateTiers = (cat : CategoryInterface) => {
+      setState((prevState)=>({
+        ...prevState,
+        currentRow: cat
+      }))
       addupdModal.toggle();
+    };
+
+    const handleDetail = (cat : CategoryInterface) => {
+      setState((prevState)=>({
+        ...prevState,
+        currentRow: cat
+      }))
+      addDetailModal.toggle();
     };
   
     const filterComponent = () => {
@@ -77,7 +104,7 @@ const CategoryView : React.FC = ()=>{
            onAction={()=>{}}
            />,
            <TableActions.updateAction
-           onAction={()=>{}}
+           onAction={handleAddUpdateTiers}
            />,
            <TableActions.deleteAction
            onAction={()=>{}}
@@ -89,11 +116,12 @@ const CategoryView : React.FC = ()=>{
 
     return (
         <Layout viewTitle="Catégorie">
+            { (state.loading)? <Box  className="flex justify-center items-center h-screen"> <CircularProgress /> </Box>:
           <TableComponent
             columns={column}
-            rows={[]}
+            rows={state.filteredData}
             toolBarChildren={filterComponent()}
-          />
+          />}
     
           <FormDialog onClose={addupdModal.toggle} isOpen={addupdModal.isOpen}>
             <AddUpdateCategory
