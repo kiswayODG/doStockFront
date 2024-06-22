@@ -60,7 +60,7 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
     },
     validationSchema: validateSchema,
 
-    onSubmit(values, formikHelpers) {
+    async onSubmit(values, formikHelpers) {
       let userToregister : UserInterface = {
         fullName: values.fullname,
         username: values.username,
@@ -71,19 +71,19 @@ const AddUpdateUser: React.FC<viewPropsI> = ({ user, onCancel }) => {
         locality: values.locality,
         telephone: values.telephone,
       }
-      toast.promise(
-        apiClient.users.createUser(userToregister).then(
+     // toast.promise(
+         apiClient.users.createUser(userToregister).then(
           (res)=>{
             if(res.data!=null)
               navigate("/login")
           }
-        ),
-        {
-          pending: 'Demande en traitement',
-          success: 'Utilisateur créé avec succès !',
-          error: 'Une erreur lors du traitement !'
-        }
-    )
+        )
+    //     {
+    //       pending: 'Demande en traitement',
+    //       success: 'Utilisateur créé avec succès !',
+    //       error: 'Une erreur lors du traitement !'
+    //     }
+    // )
       
     },
   });
