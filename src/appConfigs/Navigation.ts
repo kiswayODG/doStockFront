@@ -8,6 +8,6 @@ export const Navigation = {
     PARAMETRAGE_SOCIETE: "/parametrage/societe",
     LOGIN : "/login",
     SUBSCRIBING : "nouvel-abonnement",
-    FREEMIUM : "compte-gratuit",
+    FREEMIUM : "/new-user",
     UNDIFINED : "#",
   } as const;

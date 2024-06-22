@@ -191,8 +191,8 @@ export default function Login() {
                 </Grid>
 
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Nouveau compte"}
+                  <Link href="/new-user" variant="body2">
+                    {"Demander un compte"}
                   </Link>
                 </Grid>
               </Grid>

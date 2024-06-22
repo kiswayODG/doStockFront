@@ -23,6 +23,7 @@ export const SubmitButton=(props: CancelButtonProps)=> {
     title?: string;
     onCancel?: () => void;
     icon?: any;
+    path?:string
     sx?: React.CSSProperties;
   }
   
@@ -34,8 +35,10 @@ export const SubmitButton=(props: CancelButtonProps)=> {
         size="small"
         type="button"
         variant="contained"
+        sx={{backgroundColor:"red"}}
         className="bg-transparent hover:bg-red-500 text-red-700 font-semibold hover:text-white hover:border-transparent "
         onClick={onCancel}
+        href={props.path}
 
         {...rest}
       >
@@ -78,7 +81,7 @@ export const SubmitButton=(props: CancelButtonProps)=> {
   interface onActionButtonProps {
     titre?: string;
     type : "button" |"submit"
-    onAction?: (T?: Object) => void;
+    onAction?: (T?: any) => void;
     icon?: ReactNode;
     [key: string]: any;
     style?:any;

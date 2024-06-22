@@ -13,6 +13,7 @@ const MagasinView = lazy(() => import("@modules/parametrage/ui/MagasinView"));
 
 const Home = lazy(() => import("common/LandingPage/ui/Home"));
 const Login = lazy(() => import("@modules/users/ui/Login"));
+const RegisterUser = lazy(()=> import ("@modules/users/ui/AddUpdateUser"));
 const SettingsApplicationsIcon = lazy(() => import("@mui/icons-material/SettingsApplications"));
 const ApartmentIcon = lazy(() => import("@mui/icons-material/Apartment"));
 
@@ -34,6 +35,11 @@ export const routes: routeI[] = [
         referenceModule: 0,
         path: "/login",
         component: localStorage.getItem("connectedToken") ? Login : Login
+    },
+    {
+        referenceModule: 0,
+        path: "/new-user",
+        component: RegisterUser,
     },
     {
         referenceModule: 0,
